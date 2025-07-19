@@ -2,16 +2,30 @@
 //  ViewController.swift
 //  DeliverMore.ca
 //
-//  Created by Birch on 2022-07-19.
+//  Created by Birch on 2022-07-18.
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
+    let webView = WKWebView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.addSubview(webView)
+        
+        guard let url = URL(string: "https://delivermore.ca") else {
+            return
+            
+        }
+        webView.load(URLRequest(url: url))
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        webView.frame = view.bounds
     }
 
 
